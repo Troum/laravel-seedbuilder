@@ -1,0 +1,23 @@
+{
+  "name": "troum/laravel-seedbuilder",
+  "description": "Laravel-based smart seeder and schema generator using JSON or array configs",
+  "type": "library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Ruslan Belchenkov",
+      "email": "i@rbelchenkov.ru"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "SeedBuilder\\": "src/"
+    }
+  },
+  "require": {
+    "php": "^8.1",
+    "illuminate/support": "^9.0|^10.0|^11.0"
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
+}
