@@ -2,10 +2,11 @@
 
 namespace SeedBuilder;
 
+use Illuminate\Support\ServiceProvider;
 use SeedBuilder\Console\ExportSeedCommand;
 use SeedBuilder\Console\GenerateSeedCommand;
 
-class SeedBuilderServiceProvider
+class SeedBuilderServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
