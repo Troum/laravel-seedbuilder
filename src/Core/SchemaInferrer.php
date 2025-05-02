@@ -1,6 +1,6 @@
 <?php
 
-namespace App\SeedBuilder;
+namespace SeedBuilder\Core;
 
 use Illuminate\Support\Str;
 

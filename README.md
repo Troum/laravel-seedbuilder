@@ -73,7 +73,7 @@ composer require troum/laravel-seedbuilder
 ### Через JSON
 
 ```php
-use SeedBuilder\SeedBuilder;
+use SeedBuilder\Core\SeedBuilder;
 
 SeedBuilder::insert('seeds/some_test_data.json');
 ```
@@ -116,8 +116,7 @@ SeedBuilder::insert([
 ## 📦 Пример использования в миграции
 
 ```php
-use Illuminate\Database\Migrations\Migration;
-use SeedBuilder\SeedBuilder;
+use Illuminate\Database\Migrations\Migration;use SeedBuilder\Core\SeedBuilder;
 
 return new class extends Migration {
     public function up(): void

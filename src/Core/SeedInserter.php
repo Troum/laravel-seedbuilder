@@ -1,6 +1,6 @@
 <?php
 
-namespace App\SeedBuilder;
+namespace SeedBuilder\Core;
 
 use Faker\Factory;
 use Illuminate\Support\Facades\DB;

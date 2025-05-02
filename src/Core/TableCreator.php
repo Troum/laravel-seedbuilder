@@ -1,6 +1,6 @@
 <?php
 
-namespace App\SeedBuilder;
+namespace SeedBuilder\Core;
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
