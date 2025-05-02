@@ -10,7 +10,7 @@ class SeedBuilderServiceProvider extends ServiceProvider
 {
     public function register(): void
     {
-        //
+        $this->mergeConfigFrom(__DIR__.'/../config/seedbuilder.php', 'seedbuilder');
     }
 
     public function boot(): void
@@ -22,7 +22,7 @@ class SeedBuilderServiceProvider extends ServiceProvider
             ]);
 
             $this->publishes([
-                __DIR__ . '/../config/seedbuilder.php' => config_path('seedbuilder.php'),
+                __DIR__.'/../config/seedbuilder.php' => config_path('seedbuilder.php'),
             ], 'seedbuilder-config');
         }
     }

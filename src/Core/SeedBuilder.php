@@ -3,18 +3,11 @@
 namespace SeedBuilder\Core;
 
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\DB;
 use RuntimeException;
 
-/**
- * @class SeedBuilder
- * @package App\Integrator
- */
 class SeedBuilder
 {
-    /**
-     * @param string|array $input
-     * @return void
-     */
     public static function insert(string|array $input): void
     {
         $config = is_string($input)
@@ -24,10 +17,15 @@ class SeedBuilder
         $table = $config['table'];
         $rows = $config['rows'];
         $defaults = $config['defaults'] ?? [];
+        $truncate = $config['truncate'] ?? false;
+        $deleteWhere = $config['delete_where'] ?? null;
+        $mode = $config['mode'] ?? 'insert';
+        $uniqueKeys = $config['unique'] ?? [];
+        $schema = $config['schema'] ?? [];
 
         if (!Schema::hasTable($table)) {
-            if (!empty($config['schema'])) {
-                (new TableCreator())->createFromDefinition($table, $config['schema']);
+            if (!empty($schema)) {
+                (new TableCreator())->createFromDefinition($table, $schema);
             } else {
                 $sample = array_merge($defaults, $rows[0] ?? []);
                 if (empty($sample)) {
@@ -38,6 +36,12 @@ class SeedBuilder
             }
         }
 
-        (new SeedInserter())->insert($table, $rows, $defaults);
+        if ($truncate) {
+            DB::table($table)->truncate();
+        } elseif (!empty($deleteWhere) && is_array($deleteWhere)) {
+            DB::table($table)->where($deleteWhere)->delete();
+        }
+
+        (new SeedInserter())->insert($table, $rows, $defaults, $mode, $uniqueKeys, $schema);
     }
 }
